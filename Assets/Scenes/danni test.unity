@@ -580,7 +580,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -1.9485832e-19, z: 4.5898e-41, w: 0.000002861023}
+  m_BoundingSphereOverride: {x: 0, y: -1.8896153e-14, z: 4.5793e-41, w: 988}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
-  playerBody: {fileID: 0}
+  playerBody: {fileID: 257594724}
 --- !u!81 &1552603954
 AudioListener:
   m_ObjectHideFlags: 0
