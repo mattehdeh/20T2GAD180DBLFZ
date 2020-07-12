@@ -16,19 +16,17 @@ public class Timer : MonoBehaviour
     //this is used later to display the time in the UI
     public Text timeText;
 
-
     private void Start()
     {
         //sets the time remaining as the starting time, so we get to keep starting time as a reference
         timeRemaining = startingTime;
 
-        //Starts the timer automatically, this will be replaced by an event set by a state change in the game manager
-        timerIsRunning = true;
-
     }
 
     private void Update()
     {
+        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += RunTimer;
+
         //only runs the timer once the timerIsRunning is set to true
         if (timerIsRunning)
         {
@@ -49,6 +47,11 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
             }
         }
+    }
+
+    void RunTimer(bool timerStatus)
+    {
+        timerIsRunning = timerStatus;
     }
 
     void DisplayTime(float timeToDisplay)

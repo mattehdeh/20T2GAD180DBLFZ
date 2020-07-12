@@ -8,18 +8,15 @@ public class UIManager : MonoBehaviour
     //this is linked to the sprite being used for the load bar - specifically the one we want manipulated
     public Image LoadBar;
 
-    //this is a private game object that will be used by this script to call a variable from the actual Timer
-    private GameObject timerObj;
+    public GameObject InGameUI;
 
-     
-   //  Start is called before the first frame update
+    //  Start is called before the first frame update
     void Start()
     {
-        //this sets the private game object to the Object in scene with tag "Timer" : that is, our timer.
-        timerObj = GameObject.FindGameObjectWithTag("Timer");
+        GameObject.FindGameObjectWithTag("StartButton").GetComponent<ButtonManager>().startEvent += HideUI;
     }
 
-  //   Update is called once per frame
+        //Update is called once per frame
     void Update()
     {
         //calls the Get Time Function below
@@ -29,6 +26,20 @@ public class UIManager : MonoBehaviour
     void GetTime()
     {
         //sets the fill amount on the load bar to be equal to the float 'time percent' from the Timer object/script
-        LoadBar.fillAmount = timerObj.GetComponent<Timer>().timePercent; 
+        LoadBar.fillAmount = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timePercent;
+    }
+
+    void ShowUI(bool show)
+    {
+        Debug.Log("Show Title Screen");
+        InGameUI.SetActive(true);
+        GameObject.FindGameObjectWithTag("InGameUI").SetActive(true);
+}
+
+    public void HideUI(bool hide)
+    {
+        Debug.Log("Hide Title Screen");
+        GameObject.FindGameObjectWithTag("TitleScreenUI").SetActive(false);
+        ShowUI(hide);
     }
 }

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Timer
   - Game Manager
+  - Button
+  - StartButton
+  - InGameUI
+  - TitleScreenUI
   layers:
   - Default
   - TransparentFX
