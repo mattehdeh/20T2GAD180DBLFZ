@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         myState = gameStates.menu;
+        Debug.Log("We're sitting in Menu");
     }
 
     private void Update()
@@ -39,29 +40,35 @@ public class GameManager : MonoBehaviour
         switch (myState)
         {
             case gameStates.menu:
-                Debug.Log("We're sitting in Menu");
-                GameObject.FindGameObjectWithTag("StartButton").GetComponent<ButtonManager>().startEvent += CallStartEvent;
+                //set payer input to false
                 break;
             case gameStates.start:
-                Debug.Log("Game has begun");
+                //set player input to true
                 if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 0)
+                {
                     myState = gameStates.lose;
+                    Debug.Log("Game Lose");
+                }
 
-                //if (player finds object) myState = gameStates.win;
+
+                //if (player finds object){ myState = gameStates.win; Debug.Log("Game Win"); }
                 break;
             case gameStates.win:
+                //set payer input to false
                 gameOver = true;
                 break;
             case gameStates.lose:
+                //set payer input to false
                 gameOver = true;
-                Debug.Log("Game Over");
+
                 break;
         }
     }
 
-    public void CallStartEvent(bool begin)
+    public void CallStartEvent()
     {
-        startEvent(begin);
+        startEvent(true);
         myState = gameStates.start;
+        Debug.Log("Game has begun");
     }
 }

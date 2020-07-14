@@ -10,6 +10,8 @@ TagManager:
   - StartButton
   - InGameUI
   - TitleScreenUI
+  - DiageTimer
+  - NondiageTimer
   layers:
   - Default
   - TransparentFX

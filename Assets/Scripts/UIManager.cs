@@ -9,11 +9,12 @@ public class UIManager : MonoBehaviour
     public Image LoadBar;
 
     public GameObject InGameUI;
+    public GameObject TitleScreenUI;
 
     //  Start is called before the first frame update
     void Start()
     {
-        GameObject.FindGameObjectWithTag("StartButton").GetComponent<ButtonManager>().startEvent += HideUI;
+        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += HideUI;
     }
 
         //Update is called once per frame
@@ -32,14 +33,19 @@ public class UIManager : MonoBehaviour
     void ShowUI(bool show)
     {
         Debug.Log("Show Title Screen");
-        InGameUI.SetActive(true);
-        GameObject.FindGameObjectWithTag("InGameUI").SetActive(true);
-}
+        if (InGameUI != null)
+        {
+            InGameUI.SetActive(show);
+        }
+    }
 
     public void HideUI(bool hide)
     {
         Debug.Log("Hide Title Screen");
-        GameObject.FindGameObjectWithTag("TitleScreenUI").SetActive(false);
+        if (TitleScreenUI != null)
+        {
+            TitleScreenUI.SetActive(false);
+        }
         ShowUI(hide);
     }
 }
