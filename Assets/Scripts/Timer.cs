@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+    //  this is required so the code can control UI elements
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    //these are used to calculate a percentage of time remaining, I left them all public so other scripts can reference them
+    //  these are used to calculate a percentage of time remaining, I left them all public so other scripts can reference them
     public float startingTime;
     public float timeRemaining;
     public float timePercent;
@@ -16,6 +17,7 @@ public class Timer : MonoBehaviour
     //this is used later to display the time in the UI
     public Text timeText;
 
+    // Start is called before the first frame update
     private void Start()
     {
         //sets the time remaining as the starting time, so we get to keep starting time as a reference
@@ -23,8 +25,10 @@ public class Timer : MonoBehaviour
 
     }
 
+    //  Update is called once per frame
     private void Update()
     {
+    //  this subscribes to the Game Manager's Start Event activated by clicking the Start Button, and calls the RunTime function
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += RunTimer;
 
         //only runs the timer once the timerIsRunning is set to true
@@ -33,8 +37,12 @@ public class Timer : MonoBehaviour
             //as long as the timer hasn't reached 0 the timer will countdown, call the display time function, and calculate a percentage of time passed in game
             if (timeRemaining > 0)
             {
+                // we use delta time because
                 timeRemaining -= Time.deltaTime;
+                //this calls the DisplayTime function, setting it's required variable to equal the float of timeRemaining
                 DisplayTime(timeRemaining);
+                //this calculates a percentage of timeRemaining out of startingTime, 
+                //as this decreases, the UI Manager can reference it to manipulate the loading bar graphic
                 timePercent = timeRemaining / startingTime;
                 //play audio = tick
             }
@@ -50,11 +58,15 @@ public class Timer : MonoBehaviour
         }
     }
 
+    //this function sets the timerIsRunning bool to true, by referencing the RunTimer bool 
+    //which recieves it's true status from the Start Event it is subscribed to in the Update Function
     void RunTimer(bool timerStatus)
     {
         timerIsRunning = timerStatus;
     }
 
+    //this function tells the non-diagetic timer in the In Game UI what to display by using the float timeToDisplay
+    //the float is set when the function is called in Update following the if clause checking if the timer is running and not at 0
     void DisplayTime(float timeToDisplay)
     {
         //this ensures that for each second showing on the display, we geta  second of game play, rather than the timer being out slightly
