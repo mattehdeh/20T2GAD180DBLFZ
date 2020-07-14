@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c26351f935048fd8a959b76ad554d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnObject: 0
   spawnlocations:
   - {fileID: 1921500057}
   - {fileID: 1851174450}
@@ -349,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 330762504}
   - component: {fileID: 330762503}
+  - component: {fileID: 330762505}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Game Manager
@@ -384,6 +386,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330762505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330762502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072a6c547ed88f645bf2354e0b14df7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &400026191
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +643,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 330762503}
         m_MethodName: CallStartEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 330762505}
+        m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1416,6 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914b95a01a9e146c1b669918101e311f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActive: 0
   mouseSensitivity: 100
   playerBody: {fileID: 1356912836}
 --- !u!81 &826828194
@@ -2198,6 +2224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0baaacda3aad34f948e263392643d717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActive: 0
   controller: {fileID: 1356912835}
   speed: 12
 --- !u!143 &1356912835
@@ -2937,7 +2964,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851174449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.35, z: -10.58}
+  m_LocalPosition: {x: 0, y: -2.58, z: -10.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 207209204}
@@ -3061,7 +3088,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921500056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 14.5}
+  m_LocalPosition: {x: 11.11, y: -2.67, z: 7.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 207209204}

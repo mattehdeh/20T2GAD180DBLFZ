@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
                 timePercent = timeRemaining / startingTime;
+                //play audio = tick
             }
             //once the timer reaches 0 this will call an event for GameLose in the Game Manager, stand in Debug.Log
             else

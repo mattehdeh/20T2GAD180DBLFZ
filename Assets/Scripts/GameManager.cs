@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         switch (myState)
         {
             case gameStates.menu:
-                //set payer input to false
+                //set player input to false
                 break;
             case gameStates.start:
                 //set player input to true
