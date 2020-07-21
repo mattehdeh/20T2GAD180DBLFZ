@@ -9,7 +9,7 @@ public class mouseMove : MonoBehaviour
     public float mouseSensitivity = 100f; //speed of movement
     public Transform playerBody;
     float xRotation = 0f;
-
+    public float clampRotation = 90f ;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,7 @@ public class mouseMove : MonoBehaviour
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
             xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f); //lockedat90degrees 
+            xRotation = Mathf.Clamp(xRotation, -clampRotation, clampRotation); //lockedat90degrees 
 
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //rotationmovement 
