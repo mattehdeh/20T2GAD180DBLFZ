@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
         {
             //when our game is in it's Menu state, we don't want the player input to be active
             case gameStates.menu:
+                //locks the cursor to the game window
+                Cursor.lockState = CursorLockMode.Confined;
                 //set player input to false
                 //we have temporarily done this with an if statement in the player controller script's
                 //we also want to ensure the player can still click the start game button
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
             //at the moment we have those scripts relying on the Start Button Event to activate
             case gameStates.start:
                 //set player input to true
-
+                Cursor.visible = false;
                 //We find the game object tagged timer and get the timeRemaining float from it's Timer script
                 //When the timer is less than Zero, the engine moves into it's Lose state
                 if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 0)

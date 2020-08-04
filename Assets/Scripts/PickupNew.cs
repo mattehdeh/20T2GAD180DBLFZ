@@ -21,7 +21,7 @@ public class PickupNew : MonoBehaviour
         
     }
 
-    void OnMouseDown()
+    public void Clicked()
     {
         item.GetComponent<Rigidbody>().useGravity = false;
         item.GetComponent<Rigidbody>().isKinematic = true;
@@ -29,7 +29,8 @@ public class PickupNew : MonoBehaviour
         item.transform.rotation = guide.transform.rotation;
         item.transform.parent = tempParent.transform; 
     }
-    private void OnMouseUp()
+
+    public void Release()
     {
         item.GetComponent<Rigidbody>().useGravity = true;
         item.GetComponent<Rigidbody>().isKinematic = false;

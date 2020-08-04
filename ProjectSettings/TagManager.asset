@@ -12,6 +12,8 @@ TagManager:
   - TitleScreenUI
   - DiageTimer
   - NondiageTimer
+  - hittable
+  - static
   layers:
   - Default
   - TransparentFX
