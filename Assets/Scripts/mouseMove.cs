@@ -52,6 +52,16 @@ public class mouseMove : MonoBehaviour
                         go = hit.transform.gameObject;
                         go.GetComponent<PickupNew>().Clicked();
                     }
+                    else if (hit.transform.tag == "goal")
+                    {
+                        go = hit.transform.gameObject;
+                        go.GetComponent<PickUpGoal>().Clicked();
+                    }
+                    else if (hit.transform.tag == "notGoal")
+                    {
+                        go = hit.transform.gameObject;
+                        go.GetComponent<PickupDecoy>().Clicked();
+                    }
                 }
             }
         }
@@ -60,6 +70,14 @@ public class mouseMove : MonoBehaviour
             if (go.transform.tag == "hittable")
             {
                 go.GetComponent<PickupNew>().Release();
+            }
+            else if (go.transform.tag == "goal")
+            {
+                go.GetComponent<PickUpGoal>().Release();
+            }
+            else if (go.transform.tag == "notGoal")
+            {
+                go.GetComponent<PickupDecoy>().Release();
             }
             go = null;
         }

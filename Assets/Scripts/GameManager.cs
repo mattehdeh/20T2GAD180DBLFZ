@@ -79,7 +79,16 @@ public class GameManager : MonoBehaviour
 
                 //This pending if statement will trigger when the player finds the goal object and the engine will move to win state
                 //if (player finds object){ myState = gameStates.win; Debug.Log("Game Win"); }
+                if (GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().itemGot == true)
+                {
+                    myState = gameStates.win;
+                    Debug.Log("Game Win");
+                }
+
+                GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += GameIsWin;
                 break;
+
+
             case gameStates.win:
                 //pending codes here for what happens if the player wins
                 //set payer input to false and bring the cursor back
@@ -107,5 +116,10 @@ public class GameManager : MonoBehaviour
         //after the start Event is triggered, we shift the state engine into start phase
         myState = gameStates.start;
         Debug.Log("Game has begun");
+    }
+
+    public void GameIsWin()
+    {
+
     }
 }

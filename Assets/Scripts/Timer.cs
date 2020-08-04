@@ -31,6 +31,7 @@ public class Timer : MonoBehaviour
     //  this subscribes to the Game Manager's Start Event activated by clicking the Start Button, and calls the RunTime function
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += RunTimer;
 
+
         //only runs the timer once the timerIsRunning is set to true
         if (timerIsRunning)
         {
@@ -63,6 +64,11 @@ public class Timer : MonoBehaviour
     void RunTimer(bool timerStatus)
     {
         timerIsRunning = timerStatus;
+    }
+
+    void StopTimer(bool timerStatus)
+    {
+        timerIsRunning = false;
     }
 
     //this function tells the non-diagetic timer in the In Game UI what to display by using the float timeToDisplay

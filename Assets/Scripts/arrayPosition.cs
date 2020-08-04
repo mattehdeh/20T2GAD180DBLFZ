@@ -27,7 +27,7 @@ public class arrayPosition : MonoBehaviour
 
     {
         int randomLocation = Random.Range(0, spawnlocations.Length);
-        spawnClone[0] = Instantiate(toSpawn[0], spawnlocations[randomLocation].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        spawnClone[0] = Instantiate(toSpawn[0], spawnlocations[randomLocation].transform.position, spawnlocations[randomLocation].transform.rotation) as GameObject;
        
     }
 
