@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public enum gameStates
     {
         menu,
+        tutorial,
         start,
         win,
         lose
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour
                 //we also want to ensure the player can still click the start game button
                 //so keep an eye out for any bugs that arise from trying to set player input as false in this case
                 break;
+                //When our game is in it's Tutorial State, the only thing we need is to activate player controller
+            case gameStates.tutorial:
+                break;
             //when our game is in it's start state we want it to be waiting for the timer to end or for the player to find the goal
             //we also want our player controller to be active here, and we ould trigger the random spawn from in here too
             //at the moment we have those scripts relying on the Start Button Event to activate
@@ -78,14 +82,19 @@ public class GameManager : MonoBehaviour
                 break;
             case gameStates.win:
                 //pending codes here for what happens if the player wins
-                //set payer input to false
+                //set payer input to false and bring the cursor back
+                Cursor.visible = true;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
                 gameOver = true;
                 break;
             case gameStates.lose:
                 //pending codes here for what appens if the player loses
-                //set payer input to false
+                //set payer input to false and bring the cursor back
+                Cursor.visible = true;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
+                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
                 gameOver = true;
-
                 break;
         }
     }
