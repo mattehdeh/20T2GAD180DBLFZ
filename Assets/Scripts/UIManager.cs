@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
     public void HideUI(bool hide)
     {
         Debug.Log("Hide Title Screen");
-    //  this checks to see if the TitleScreen object exists, and if it does, sets that object's active stuatus to false
+    //  this checks to see if the TitleScreen object exists, and if it does, sets that object's active status to false
     //  it is then no longer rendered and no longer visible
         if (TitleScreenUI != null)
         {
