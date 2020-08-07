@@ -17,7 +17,9 @@ public class Timer : MonoBehaviour
     //this is used later to display the time in the UI
     public Text timeText;
 
-    // Start is called before the first frame update
+    public event System.Action<bool> timerUp;
+
+
     private void Start()
     {
         //sets the time remaining as the starting time, so we get to keep starting time as a reference
@@ -31,10 +33,10 @@ public class Timer : MonoBehaviour
     //  this subscribes to the Game Manager's Start Event activated by clicking the Start Button, and calls the RunTime function
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += RunTimer;
 
-
         //only runs the timer once the timerIsRunning is set to true
         if (timerIsRunning)
         {
+            GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += StopTimer;
             //as long as the timer hasn't reached 0 the timer will countdown, call the display time function, and calculate a percentage of time passed in game
             if (timeRemaining > 0)
             {
@@ -55,6 +57,7 @@ public class Timer : MonoBehaviour
                 timeRemaining = 0;
                 //timeIsRunning set to false to prevent further subtractions
                 timerIsRunning = false;
+                GameIsLose(true);
             }
         }
     }
@@ -66,6 +69,7 @@ public class Timer : MonoBehaviour
         timerIsRunning = timerStatus;
     }
 
+    //this needs to be seperate from the timer running out as we don't want to set the timer to zero when we find the goal object
     void StopTimer(bool timerStatus)
     {
         timerIsRunning = false;
@@ -85,5 +89,10 @@ public class Timer : MonoBehaviour
         //usin string.Format allows us to place variables inside of a formatted string, in this case taking the form of time display
         // the colons used here aren't related to what is seen in display, they are used to seperate a reference number from the value's format
         timeText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+    }
+
+    public void GameIsLose(bool lose)
+    {
+        timerUp(lose);
     }
 }

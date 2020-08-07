@@ -15,6 +15,7 @@ public class playerMovement : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += ActivateInput;
 
+
         if (inputActive == true)
         {
 
@@ -26,11 +27,18 @@ public class playerMovement : MonoBehaviour
 
             controller.Move(move * speed * Time.deltaTime); //using varible set above 
                                                             // moves takes in vector 3 fotr montion move is function with character controller
+            GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += DeActivateInput;
+            GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timerUp += DeActivateInput;
         }
     }
 
     void ActivateInput(bool active)
     {
         inputActive = active;
+    }
+
+    void DeActivateInput(bool inactive)
+    {
+        inputActive = false;
     }
 }

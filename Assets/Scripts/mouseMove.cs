@@ -26,6 +26,7 @@ public class mouseMove : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().startEvent += ActivateInput;
 
+
         if (inputActive == true)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;  //getlocationofmouse 
@@ -37,6 +38,8 @@ public class mouseMove : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //rotationmovement 
             playerBody.Rotate(Vector3.up * mouseX);
+            GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += DeActivateInput;
+            GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timerUp += DeActivateInput;
         }
         //setup a ray cast
         RaycastHit hit;
@@ -57,11 +60,13 @@ public class mouseMove : MonoBehaviour
                         go = hit.transform.gameObject;
                         go.GetComponent<PickUpGoal>().Clicked();
                     }
+                    /*I won't need this because I mistakenly thought other objects would spawn with the spawner but it is only the paper
                     else if (hit.transform.tag == "notGoal")
                     {
                         go = hit.transform.gameObject;
                         go.GetComponent<PickupDecoy>().Clicked();
                     }
+                    */
                 }
             }
         }
@@ -71,14 +76,17 @@ public class mouseMove : MonoBehaviour
             {
                 go.GetComponent<PickupNew>().Release();
             }
-            else if (go.transform.tag == "goal")
+            // I don't need this if the game ends on item pickup
+            /*else if (go.transform.tag == "goal")
             {
                 go.GetComponent<PickUpGoal>().Release();
             }
+            // we don't need this because the spawner doesn't spawn 'decoys'
             else if (go.transform.tag == "notGoal")
             {
                 go.GetComponent<PickupDecoy>().Release();
             }
+            */
             go = null;
         }
     }
@@ -86,5 +94,9 @@ public class mouseMove : MonoBehaviour
     void ActivateInput(bool active)
     {
         inputActive = active;
+    }
+    void DeActivateInput(bool inactive)
+    {
+        inputActive = false;
     }
 }

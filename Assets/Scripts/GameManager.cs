@@ -71,20 +71,18 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = false;
                 //We find the game object tagged timer and get the timeRemaining float from it's Timer script
                 //When the timer is less than Zero, the engine moves into it's Lose state
+                /* commenting this out because the state machine now subscribes to events rather than using if statements
                 if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 0)
                 {
                     myState = gameStates.lose;
                     Debug.Log("Game Lose");
                 }
-
+                */
+                GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timerUp += GameIsLose;
                 //This pending if statement will trigger when the player finds the goal object and the engine will move to win state
-                //if (player finds object){ myState = gameStates.win; Debug.Log("Game Win"); }
-                if (GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().itemGot == true)
-                {
-                    myState = gameStates.win;
-                    Debug.Log("Game Win");
-                }
-
+                //if (player finds object){ myState = gameStates.win; Debug.Log("Game Win");
+                //removed an if statement waiting on itemGot to be true in the pickup scripts
+                //could probably run the lose condition from events as well
                 GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += GameIsWin;
                 break;
 
@@ -92,17 +90,13 @@ public class GameManager : MonoBehaviour
             case gameStates.win:
                 //pending codes here for what happens if the player wins
                 //set payer input to false and bring the cursor back
-                Cursor.visible = true;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
+                Debug.Log("Game Over");
                 gameOver = true;
                 break;
             case gameStates.lose:
                 //pending codes here for what appens if the player loses
                 //set payer input to false and bring the cursor back
-                Cursor.visible = true;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
+                Debug.Log("Game Over");
                 gameOver = true;
                 break;
         }
@@ -118,8 +112,21 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game has begun");
     }
 
-    public void GameIsWin()
+    public void GameIsWin(bool win)
     {
+        myState = gameStates.win;
+        Debug.Log("You win!");
+        Cursor.visible = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
+    }
 
+    public void GameIsLose(bool lose)
+    {
+        myState = gameStates.lose;
+        Debug.Log("You Lose!");
+        Cursor.visible = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<playerMovement>().inputActive = false;
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<mouseMove>().inputActive = false;
     }
 }

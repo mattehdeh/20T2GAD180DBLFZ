@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PickupDecoy : MonoBehaviour
 {
+    // We don't need this script at all because the spawner doesn't spawn 'decoys'
+    // Left it in so we can use it in the future if needed
     public GameObject item;
     public GameObject tempParent;
     public GameObject guide;
