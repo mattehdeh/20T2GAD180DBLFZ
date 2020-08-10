@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &316495139
 RectTransform:
   m_ObjectHideFlags: 0
@@ -693,6 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   myState: 0
+  currentState: 
 --- !u!4 &330762504
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,6 +1367,8 @@ MonoBehaviour:
   LoadBar: {fileID: 1563465057}
   InGameUI: {fileID: 1395181341}
   TitleScreenUI: {fileID: 1990143351}
+  WinUI: {fileID: 316495138}
+  LoseUI: {fileID: 284233187}
 --- !u!114 &596436294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,7 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bdee637f1a55a47ac654132acc057c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 180
+  startingTime: 3
   timeRemaining: 0
   timePercent: 0
   timerIsRunning: 0
@@ -4489,7 +4492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1990143352
 RectTransform:
   m_ObjectHideFlags: 0

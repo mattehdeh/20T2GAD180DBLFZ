@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     //  we later render them active or inactive, which makes their children visible or not visible
     public GameObject InGameUI;
     public GameObject TitleScreenUI;
+    public GameObject WinUI;
+    public GameObject LoseUI;
 
     //  Start is called before the first frame update
     void Start()
@@ -27,6 +29,11 @@ public class UIManager : MonoBehaviour
     {
     //  calls the Get Time Function below, this is important to make sure the loading bar image manipulation updates each frame
         GetTime();
+        if (GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().currentState == "start")
+        {
+            GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += Disable;
+            GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timerUp += Disable;
+        }
     }
 
     //  This function is called in Update (every frame) and controls the loading bar graphic
@@ -62,5 +69,37 @@ public class UIManager : MonoBehaviour
         }
     //  this calls the ShowUI function after the Title Screen has been set to active.false
         ShowUI(hide);
+    }
+
+    public void GameWin()
+    {
+        Debug.Log("Show Win Screen");
+        if (WinUI != null)
+        {
+            WinUI.SetActive(true);
+        }
+    }
+
+    public void GameLose()
+    {
+        Debug.Log("Show Lose Screen");
+        if (LoseUI != null)
+        {
+
+            LoseUI.SetActive(true);
+        }
+    }
+
+    void Disable(bool gameEnd)
+    {
+        InGameUI.SetActive(false);
+        if (GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().currentState == "win")
+        {
+            Invoke("GameWin", 1.0f);
+        }
+        if (GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().currentState == "lose")
+        {
+            Invoke("GameLose", 1.0f);
+        }
     }
 }

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     //this is used to store the current type of game state in our state manager
     public gameStates myState;
+    public string currentState;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         {
             //when our game is in it's Menu state, we don't want the player input to be active
             case gameStates.menu:
+                currentState = "menu";
                 //locks the cursor to the game window
                 Cursor.lockState = CursorLockMode.Confined;
                 //set player input to false
@@ -62,11 +64,13 @@ public class GameManager : MonoBehaviour
                 break;
                 //When our game is in it's Tutorial State, the only thing we need is to activate player controller
             case gameStates.tutorial:
+                currentState = "tutorial";
                 break;
             //when our game is in it's start state we want it to be waiting for the timer to end or for the player to find the goal
             //we also want our player controller to be active here, and we ould trigger the random spawn from in here too
             //at the moment we have those scripts relying on the Start Button Event to activate
             case gameStates.start:
+                currentState = "start";
                 //set player input to true
                 Cursor.visible = false;
                 //We find the game object tagged timer and get the timeRemaining float from it's Timer script
@@ -114,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void GameIsWin(bool win)
     {
+        currentState = "win";
         myState = gameStates.win;
         Debug.Log("You win!");
         Cursor.visible = true;
@@ -123,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     public void GameIsLose(bool lose)
     {
+        currentState = "lose";
         myState = gameStates.lose;
         Debug.Log("You Lose!");
         Cursor.visible = true;
