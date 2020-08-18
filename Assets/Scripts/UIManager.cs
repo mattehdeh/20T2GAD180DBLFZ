@@ -15,6 +15,11 @@ public class UIManager : MonoBehaviour
     public GameObject TitleScreenUI;
     public GameObject WinUI;
     public GameObject LoseUI;
+    public GameObject Message1;
+    public GameObject Message2;
+    public GameObject Message3;
+    public GameObject Message4;
+
 
     //  Start is called before the first frame update
     void Start()
@@ -34,7 +39,31 @@ public class UIManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("goal").GetComponent<PickUpGoal>().goalGet += Disable;
             GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timerUp += Disable;
         }
+
+        if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 120 && 
+        GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining > 60)
+        {
+            Message1.SetActive(false);
+            Message2.SetActive(true);
+        }
+
+        if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 60 &&
+         GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining > 30)
+        {
+            Message2.SetActive(false);
+            Message3.SetActive(true);
+
+        }
+
+         if (GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining < 30 &&
+         GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>().timeRemaining > 0)
+        {
+            Message3.SetActive(false);
+            Message4.SetActive(true);
+
+        }
     }
+
 
     //  This function is called in Update (every frame) and controls the loading bar graphic
     void GetTime()
